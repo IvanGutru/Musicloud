@@ -3,18 +3,19 @@ const conexionBaseDatos = require('../../conexionBaseDatos');
 const Cuenta = require('../Dominio/Cuenta');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
+const crearToken = require('../../Utilidades/generartoken');
 
 const crearCuenta = async(req, res) =>{
     try {
         const cuenta = {correo: req.body.correo,contraseña: req.body.contraseña,apellidos: req.body.apellidos,
-        nombreUsuario: req.body.nombreUsuario, nombre: req.body.nombre, creadorContenido: req.body.creadorContenido, esGratis: req.body.esGratis }
+        nombreUsuario: req.body.nombreUsuario, nombre: req.body.nombre, creadorContenido: req.body.creadorContenido }
         if(await validarCorreoNoRegistrado(cuenta.correo) == true){
             if(await validarUsuarioNoRegsitrado(cuenta.nombreUsuario) == true){
                 cuenta.contraseña = await bcrypt.hash(cuenta.contraseña,10);
                 cuenta.idCuenta = generarIdCuenta();
-                const respuesta = await conexionBaseDatos.query('INSERT INTO cuenta (IdCuenta, Correo, Contraseña, Apellidos, NombreUsuario, Nombre,CreadorContenido,EsGratis) VALUES ($1,$2,$3,$4,$5,$6,$7,$8);',
-                [cuenta.idCuenta,cuenta.correo,cuenta.contraseña,cuenta.apellidos,cuenta.nombreUsuario,cuenta.nombre,cuenta.creadorContenido,cuenta.esGratis]);
-                res.status(200).json(respuesta.rows[0]);
+                const respuesta = await conexionBaseDatos.query('INSERT INTO cuenta (IdCuenta, Correo, Contraseña, Apellidos, NombreUsuario, Nombre,CreadorContenido) VALUES ($1,$2,$3,$4,$5,$6,$7);',
+                [cuenta.idCuenta,cuenta.correo,cuenta.contraseña,cuenta.apellidos,cuenta.nombreUsuario,cuenta.nombre,cuenta.creadorContenido]);
+                res.status(200).json({Mensaje: 'Registro exitoso'});
             }else{
                 res.status(500).json({Mensaje:'El nombre de usuario ingresado ya está registrado'});
             }
@@ -48,6 +49,7 @@ async function validarUsuarioNoRegsitrado(nombreUsuario){
     }
     return false;
 }
+
 
 module.exports = {
     crearCuenta

@@ -1,5 +1,5 @@
 class Cuenta{
-    constructor(idCuenta,correo,contrasenia,apellidos,nombreUsuario,nombre, creadorContenido, esGratis ){
+    constructor(idCuenta,correo,contrasenia,apellidos,nombreUsuario,nombre, creadorContenido ){
         this.idCuenta = idCuenta;
         this.correo = correo;
         this.contrasenia = contrasenia;
@@ -7,7 +7,6 @@ class Cuenta{
         this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
         this.creadorContenido = creadorContenido;
-        this.esGratis = esGratis;
     }
 
 }

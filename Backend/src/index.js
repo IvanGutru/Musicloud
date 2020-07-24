@@ -11,8 +11,9 @@ app.use(express.urlencoded({extended: false}));
 app.use(require('./routes/index'));
 
 try {
-    app.listen(4000);
-    console.log('Server in 4000');
+    app.listen(5000);
+    console.log('Server in 5000');
 } catch (error) {
     console.log(error);
 }
+

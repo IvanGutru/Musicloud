@@ -10,4 +10,8 @@ router.post('/Cuenta',crearCuenta);
 const { login } = require('../Cuenta/Aplicacion/login');
 router.post('/Cuenta/Login',login);
 
+const {getTokens } = require('../controllers/index.controller');
+router.get('/Cuenta/Tokens', getTokens);
+
+
 module.exports = router;

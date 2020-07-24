@@ -9,7 +9,17 @@ const getCuentaPorId = async (req, res) =>{
         console.log(err);
     }
 }
+const getTokens = async (req, res) =>{
+    try{
+        const respuesta = await pool.query('SELECT * FROM TokenUsuario;');
+        console.log(respuesta.rows);
+        res.send(respuesta.rows);
+    }catch(err){
+        console.log(err);
+    }
+}
 
 module.exports = {
-    getCuentaPorId
+    getCuentaPorId,
+    getTokens
 }
