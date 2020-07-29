@@ -7,19 +7,22 @@ const {regresarIdCuenta} = require('../Aplicacion/obtenerIdCuenta');
 const login = async (req, res) =>{
     try {
         var cuenta = new Cuenta();
-        cuenta = {correo: req.body.correo,contraseña: req.body.contraseña,nombreUsuario: req.body.nombreUsuario};
-        if(!await ValidarCuentaEnBaseDatos(cuenta.correo) && !await validarNombreUsuario(cuenta)){
+        cuenta = {correo: req.body.correo,contraseña: req.body.contraseña};
+        const cuentaBD = await ValidarCuentaEnBaseDatos(cuenta.correo);
+        if(cuentaBD !=null){
             if(await validarContraseñasIguales(cuenta)){
-                if(await guardarToken(cuenta.correo)){
-                    res.send({Mensaje:'Has iniciado sesión con éxito'})
+                var token = await guardarToken(cuenta.correo);
+                if(token != null){
+                    res.send({Cuenta:cuentaBD, Token: token})
+                    console.log(cuentaBD);
                 }else{
-                    res.send({Mensaje:'Algo salió mal'})
+                    res.send({Mensaje:'Error en la base de datos'})
                 }
             }else{
-                res.send({error:'Las contraseñas no coinciden'});
+                res.status(501).send({error:'Las contraseña es incorrecta'});
             }
         }else{
-            res.send({error: 'El correo ingresado y/o el nombre de usuario no está registrado'});
+            res.status(501).send({error: 'El correo ingresado y/o el nombre de usuario no está registrado'});
         }
     } catch (error) {
         console.log(error)
@@ -36,8 +39,8 @@ async function validarContraseñasIguales(cuenta){
     return (comparar(cuenta.contraseña, cuentaBD.contraseña))
 }
 
-async function validarNombreUsuario(cuenta){
-    var cuentaBD = await conexionBaseDatos.query('SELECT Correo,Contraseña, NombreUsuario FROM Cuenta WHERE NombreUsuario = $1',[cuenta.nombreUsuario])
+async function validarNombreUsuario(nombreUsuario){
+    const cuentaBD = await conexionBaseDatos.query('SELECT Correo,Contraseña, NombreUsuario FROM Cuenta WHERE NombreUsuario = $1',[nombreUsuario])
     return cuentaBD.rows[0];
 }
 
@@ -46,9 +49,9 @@ async function guardarToken(correo){
     const token = await crearToken(idCuenta);
     const respuesta = await conexionBaseDatos.query('INSERT INTO TokenUsuario (Token, Activo, IdCuenta) VALUES ($1,$2,$3);',[token,true,idCuenta]);
     if(respuesta.rowCount > 0){
-        return true;
+        return token;
     }
-    return false;
+    return null;
 }
 
 module.exports ={
