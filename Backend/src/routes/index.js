@@ -22,4 +22,9 @@ router.get('/Artista/:nombre',obtenerArtistaPorNombre);
 const {obtenerAlbumPorIdArtista} = require('../Album/Aplicacion/obtenerAlbumPorIdArtista');
 router.get('/Album/:idArtista',obtenerAlbumPorIdArtista);
 
+//Rutas de cacion
+
+const { obtenerCancionesPorIdAlbum } = require('../Cancion/Aplicacion/obtenerCancionesPorIdAlbum');
+router.get('/Canciones/:idAlbum',obtenerCancionesPorIdAlbum);
+
 module.exports = router;
