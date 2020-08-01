@@ -1,4 +1,4 @@
-var pool = require('../conexionBaseDatos');
+var pool = require('../Utilidades/conexionBaseDatos');
 
 const getCuentaPorId = async (req, res) =>{
     try{

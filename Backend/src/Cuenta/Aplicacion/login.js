@@ -1,7 +1,7 @@
 const Cuenta = require('../Dominio/Cuenta');
 const {crearToken} = require('../../Utilidades/generartoken');
-const conexionBaseDatos = require('../../conexionBaseDatos');
-const {comparar} = require('../../encriptador');
+const conexionBaseDatos = require('../../Utilidades/conexionBaseDatos');
+const {comparar} = require('../../Utilidades/encriptador');
 const {regresarIdCuenta} = require('../Aplicacion/obtenerIdCuenta');
 
 const login = async (req, res) =>{
@@ -14,7 +14,7 @@ const login = async (req, res) =>{
                 var token = await guardarToken(cuenta.correo);
                 if(token != null){
                     res.send({Cuenta:cuentaBD, Token: token})
-                    console.log(cuentaBD);
+                    console.log('Inició sesión');
                 }else{
                     res.send({Mensaje:'Error en la base de datos'})
                 }

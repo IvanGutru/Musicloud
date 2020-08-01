@@ -1,4 +1,4 @@
-const conexionBaseDatos = require('../../conexionBaseDatos');
+const conexionBaseDatos = require('../../Utilidades/conexionBaseDatos');
 
 async function obtenerIdCuenta(correo){
     const idCuenta = await conexionBaseDatos.query('SELECT IdCuenta FROM Cuenta WHERE Correo = $1;',[correo]);

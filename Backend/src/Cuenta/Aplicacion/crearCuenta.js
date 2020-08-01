@@ -1,9 +1,10 @@
 
-const conexionBaseDatos = require('../../conexionBaseDatos');
+const conexionBaseDatos = require('../../Utilidades/conexionBaseDatos');
 const Cuenta = require('../Dominio/Cuenta');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const crearToken = require('../../Utilidades/generartoken');
+const { Console } = require('console');
 
 const crearCuenta = async(req, res) =>{
     try {
@@ -16,11 +17,12 @@ const crearCuenta = async(req, res) =>{
                 const respuesta = await conexionBaseDatos.query('INSERT INTO cuenta (IdCuenta, Correo, Contraseña, Apellidos, NombreUsuario, Nombre,CreadorContenido) VALUES ($1,$2,$3,$4,$5,$6,$7);',
                 [cuenta.idCuenta,cuenta.correo,cuenta.contraseña,cuenta.apellidos,cuenta.nombreUsuario,cuenta.nombre,cuenta.creadorContenido]);
                 res.status(200).json({Mensaje: 'Registro exitoso'});
+                console.log('Registro exitoso')
             }else{
-                res.status(500).json({Mensaje:'El nombre de usuario ingresado ya está registrado'});
+                res.status(500).json({error:'El nombre de usuario ingresado ya está registrado'});
             }
         }else{
-            res.status(500).json({Mensaje: 'El correo ingresado ya está registrado'});
+            res.status(500).json({error: 'El correo ingresado ya está registrado'});
         }
     } catch (error) {
         console.log(error);
