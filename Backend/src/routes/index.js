@@ -19,8 +19,14 @@ const {obtenerArtistaPorNombre} = require('../Artista/Aplicacion/mostrarArtistas
 router.get('/Artista/:nombre',obtenerArtistaPorNombre);
 
 //Rutas de Album
+const { obtenerAlbumPorId} = require('../Album/Aplicacion/ObtenerAlbumPorId');
+router.get('/Album/Id/:idAlbum',obtenerAlbumPorId);
+
 const {obtenerAlbumPorIdArtista} = require('../Album/Aplicacion/obtenerAlbumPorIdArtista');
 router.get('/Album/:idArtista',obtenerAlbumPorIdArtista);
+
+const { obtenerAlbumPorNombre} = require('../Album/Aplicacion/obtenerAlbumPorNombre');
+router.get('/Album/Nombre/:nombreAlbum',obtenerAlbumPorNombre);
 
 //Rutas de cacion
 
