@@ -33,4 +33,8 @@ router.get('/Album/Nombre/:nombreAlbum',obtenerAlbumPorNombre);
 const { obtenerCancionesPorIdAlbum } = require('../Cancion/Aplicacion/obtenerCancionesPorIdAlbum');
 router.get('/Canciones/:idAlbum',obtenerCancionesPorIdAlbum);
 
+//Rutas Playlist
+const {CrearPlaylist} = require('../Playlist/Aplicacion/crearPlaylist');
+router.post('/Playlist',CrearPlaylist);
+
 module.exports = router;

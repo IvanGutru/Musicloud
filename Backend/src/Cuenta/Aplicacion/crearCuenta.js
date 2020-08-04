@@ -3,8 +3,6 @@ const conexionBaseDatos = require('../../Utilidades/conexionBaseDatos');
 const Cuenta = require('../Dominio/Cuenta');
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
-const crearToken = require('../../Utilidades/generartoken');
-const { Console } = require('console');
 
 const crearCuenta = async(req, res) =>{
     try {
