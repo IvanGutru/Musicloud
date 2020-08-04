@@ -1,20 +1,19 @@
-const {DecodificarBase64} = require('../Utilidades/DecodificarBase64');
+const {DecodificarBase64, decodeBase64Image} = require('../Utilidades/DecodificarBase64');
 const fs = require('fs');
 
 function GuardarImagen(imagenCodificada,nombreImagen ,tipoImagen){
     var path = '/home/ivangutru/Documentos/Musicloud/Backend/Imagenes/';
-    console.log('PASOX1');
     var imagenDecodificada = DecodificarBase64(imagenCodificada);
+    console.log('error');
     var newPath = path+nombreImagen;
-    fs.appendFile(newPath,imagenDecodificada, (err) =>{
+    fs.appendFile(newPath,imagenDecodificada,"binary", (err) =>{
       if(err) throw err;
       console.log('Se creo el archivo');
     })
-    console.log('PASOX3');
 }
 
 function GenerarNombreImagen(nombreImagen, fechaCreacion){
-  var nuevoNombreImagen = nombreImagen.replace(" ",""); 
+  var nuevoNombreImagen = nombreImagen.replace(" ","_"); 
   return nuevoNombreImagen+'-'+fechaCreacion+'.png';
 }
 module.exports ={

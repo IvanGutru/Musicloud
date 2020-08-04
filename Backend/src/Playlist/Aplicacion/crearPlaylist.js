@@ -11,6 +11,7 @@ const CrearPlaylist = async(req, res) =>{
         var nombreImagen = GenerarNombreImagen(playlist.nombre, playlist.fechaCreacion);
         console.log(nombreImagen);
         GuardarImagen(playlist.portada,nombreImagen,'Playlist');
+        playlist.portada = nombreImagen;
         console.log('Funcono');
         const respuesta = await conexionBaseDatos.query('INSERT INTO Playlist (Nombre, publica, fechaCreacion,portada, idCuenta,idTipoPlaylist) VALUES ($1,$2,$3,$4,$5,$6);',
         [playlist.nombre,playlist.publica,playlist.fechaCreacion,playlist.portada,playlist.idCuenta,playlist.idTipoPlaylist]);
