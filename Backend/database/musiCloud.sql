@@ -27,6 +27,11 @@ Create table Artista(
     FechaRegistro date NOT NULL,
     IdGenero INTEGER NOT NULL
 );
+Create table CuentaArtista(
+    IdCuentaArtista serial NOT NULL PRIMARY KEY,
+    IdCuenta text NOT NULL,
+    IdArtista text NOT NULL
+);
 
 Create table BibliotecaPropia(
     IdBibliotecaPropia SERIAL PRIMARY KEY,
@@ -140,4 +145,12 @@ ADD CONSTRAINT FKCancion
 FOREIGN KEY (IdCancion)
 REFERENCES Cancion(IdCancion);
 
-1da06aaaeab96a37039cfe426ac0b9d817189754 
+ALTER TABLE CuentaArtista
+ADD CONSTRAINT FKCuenta
+FOREIGN KEY (IdCuenta)
+REFERENCES Cuenta(IdCuenta);
+
+ALTER TABLE CuentaArtista
+ADD CONSTRAINT FKArtista
+FOREIGN KEY (IdArtista)
+REFERENCES Artista(IdArtista);
