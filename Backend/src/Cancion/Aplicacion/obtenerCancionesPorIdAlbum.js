@@ -7,7 +7,6 @@ const obtenerCancionesPorIdAlbum = async (req,res) =>{
         const respuesta = await conexionBaseDatos.query('SELECT * FROM Cancion Where IdAlbum = $1',[idAlbum]);
         if(respuesta.rowCount >0){
             res.send(respuesta.rows)
-            console.log('Se jalaron las canciones');
         }else{
             res.status(500).send({error:'El album no tiene canciones'});
         }

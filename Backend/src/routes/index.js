@@ -5,8 +5,14 @@ const {getCuentaPorId } = require('../controllers/index.controller');
 router.get('/Cuenta', getCuentaPorId);
 
 //Rutas de cuenta
-const { crearCuenta} = require('../Cuenta/Aplicacion/crearCuenta');
+const { crearCuenta } = require('../Cuenta/Aplicacion/crearCuenta');
 router.post('/Cuenta',crearCuenta);
+
+const { ConvertirseEnCreadorDeContenido } = require('../Cuenta/Aplicacion/convertirseEnCreadorDeContenido');
+router.put('/Cuenta/CreadorContenido/:idCuenta',ConvertirseEnCreadorDeContenido);
+
+const { ActualizarCuenta } = require('../Cuenta/Aplicacion/actualizarCuenta');
+router.put('/Cuenta/Actualizar',ActualizarCuenta);
 
 const { login } = require('../Cuenta/Aplicacion/login');
 router.post('/Cuenta/Login',login);
@@ -15,8 +21,11 @@ const {getTokens } = require('../controllers/index.controller');
 router.get('/Cuenta/Tokens', getTokens);
 
 //Rutas de Artista
-const {obtenerArtistaPorNombre} = require('../Artista/Aplicacion/mostrarArtistas');
+const { obtenerArtistaPorNombre } = require('../Artista/Aplicacion/mostrarArtistasPorNombre');
 router.get('/Artista/:nombre',obtenerArtistaPorNombre);
+
+const { ObtenerArtistasHome } = require('../Artista/Aplicacion/obtenerArtistasHome');
+router.get('/ArtistaHome',ObtenerArtistasHome);
 
 //Rutas de Album
 const { obtenerAlbumPorId} = require('../Album/Aplicacion/ObtenerAlbumPorId');
@@ -36,5 +45,11 @@ router.get('/Canciones/:idAlbum',obtenerCancionesPorIdAlbum);
 //Rutas Playlist
 const {CrearPlaylist} = require('../Playlist/Aplicacion/crearPlaylist');
 router.post('/Playlist',CrearPlaylist);
+
+const{ObtenerPlaylistDeSistema} = require('../Playlist/Aplicacion/obtnerPlaylistDeSistema');
+router.get('/Playlist/Sistema/:idPlaylistSistema',ObtenerPlaylistDeSistema);
+
+const{ObtenerImagenPlaylist} = require('../Playlist/Aplicacion/obtenerImagenPlaylist');
+router.get('/Playlist/imagen/:nombreImagen',ObtenerImagenPlaylist);
 
 module.exports = router;

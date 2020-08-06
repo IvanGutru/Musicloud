@@ -13,7 +13,7 @@ const login = async (req, res) =>{
             if(await validarContraseñasIguales(cuenta)){
                 var token = await guardarToken(cuenta.correo);
                 if(token != null){
-                    res.send({Cuenta:cuentaBD, Token: token})
+                    res.send(cuentaBD)
                     console.log('Inició sesión');
                 }else{
                     res.send({Mensaje:'Error en la base de datos'})
@@ -30,7 +30,7 @@ const login = async (req, res) =>{
 }
 
 async function ValidarCuentaEnBaseDatos(correo){
-    const cuenta = await conexionBaseDatos.query('SELECT IdCuenta,Correo,Contraseña,NombreUsuario FROM Cuenta WHERE correo = $1;',[correo]);
+    const cuenta = await conexionBaseDatos.query('SELECT * FROM Cuenta WHERE correo = $1;',[correo]);
     return cuenta.rows[0];
 }
 
