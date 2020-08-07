@@ -1,7 +1,6 @@
 const fs = require('fs');
-const { Console } = require('console');
 
-const ObtenerImagenPlaylist = async(req,res)=>{
+const ObtenerImagenArtista = async(req,res)=>{
     try {
     var nombreImagen = req.params.nombreImagen;
     var pathImagenes = '/home/ivangutru/Documentos/Musicloud/Backend/Imagenes/';
@@ -14,5 +13,5 @@ const ObtenerImagenPlaylist = async(req,res)=>{
 }
 
 module.exports ={
-    ObtenerImagenPlaylist
+    ObtenerImagenArtista
 }

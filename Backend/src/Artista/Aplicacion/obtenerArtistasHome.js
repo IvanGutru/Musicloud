@@ -2,7 +2,7 @@ const conexionBaseDatos = require('../../Utilidades/conexionBaseDatos');
 
 const ObtenerArtistasHome = async(req, res) =>{
     try {
-        const respuesta = await conexionBaseDatos.query('SELECT * FROM Artista ORDER BY nombre LIMIT 10;');
+        const respuesta = await conexionBaseDatos.query('SELECT * FROM Artista ORDER BY fechaRegistro DESC LIMIT 10;');
         if(respuesta.rowCount>0){
             res.send(respuesta.rows)
         }else{

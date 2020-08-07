@@ -16,6 +16,7 @@ Create table Album(
     Nombre text NOT NULL,
     Compania text NOT NULL,
     Portada text NOT NULL,
+    FechaRegistro date NOT NULL,
     IdGenero INTEGER NOT NULL,
     IdArtista text NOT NULL
 );
