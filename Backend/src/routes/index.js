@@ -58,6 +58,8 @@ const{CrearAlbum} = require('../Album/Aplicacion/crearAlbum');
 router.post('/Album',CrearAlbum);
 
 //Rutas de cacion
+const {CrearCancion} = require('../Cancion/Aplicacion/crearCancion');
+router.post('/Cancion',CrearCancion);
 
 const { obtenerCancionesPorIdAlbum } = require('../Cancion/Aplicacion/obtenerCancionesPorIdAlbum');
 router.get('/Canciones/:idAlbum',obtenerCancionesPorIdAlbum);
