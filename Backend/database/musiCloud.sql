@@ -47,8 +47,9 @@ Create table BibliotecaPropia(
 CREATE TABLE Cancion(
     IdCancion text PRIMARY KEY,
     Nombre text NOT NULL,
-    Duracion real NOT NULL,
+    Duracion text NOT NULL,
     Archivo text NOT NULL,
+    Portada text NOT NULL,
     IdAlbum text
 );
 
