@@ -65,6 +65,7 @@ CREATE TABLE Genero(
 CREATE TABLE Historial(
     IdHistorial SERIAL PRIMARY KEY,
     FechaReproduccion date NOT NULL,
+    IdCancion text,
     IdCuenta text
 );
 
@@ -121,6 +122,11 @@ ALTER TABLE Historial
 ADD CONSTRAINT FKCuenta
 FOREIGN KEY (IdCuenta)
 REFERENCES Cuenta(IdCuenta);
+
+ALTER TABLE Historial
+ADD CONSTRAINT FKCancion
+FOREIGN KEY (IdCancion)
+REFERENCES Cancion(IdCancion);
 
 ALTER TABLE Playlist
 ADD CONSTRAINT FKCuenta

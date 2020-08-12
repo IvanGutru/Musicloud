@@ -81,6 +81,9 @@ router.post('/Playlist',CrearPlaylist);
 const{ObtenerPlaylistDeSistema} = require('../Playlist/Aplicacion/obtnerPlaylistDeSistema');
 router.get('/Playlist/Sistema/:idPlaylistSistema',ObtenerPlaylistDeSistema);
 
+const{ObtenerPlaylistDeUsuario} = require('../Playlist/Aplicacion/obtenerPlaylistUsuario');
+router.get('/Playlist/Usuario/:idCuenta',ObtenerPlaylistDeUsuario);
+
 const{ObtenerImagenPlaylist} = require('../Playlist/Aplicacion/obtenerImagenPlaylist');
 router.get('/Playlist/imagen/:nombreImagen',ObtenerImagenPlaylist);
 
