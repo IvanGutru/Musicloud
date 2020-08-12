@@ -1,12 +1,13 @@
 const conexionBaseDatos = require('../../Utilidades/conexionBaseDatos');
 
 
-const obtenerCancionesPorIdAlbum = async (req,res) =>{
+const obtenerHistorialReproduccion = async (req,res) =>{
     try {
-        var idAlbum = req.params.idAlbum;
-        const respuesta = await conexionBaseDatos.query('SELECT * FROM Cancion Where IdAlbum = $1',[idAlbum]);
+        var idCuenta = req.params.idCuenta;
+        const respuesta = await conexionBaseDatos.query('SELECT * FROM Historial  Where IdCuenta = $1 ORDER BY fechaReproduccion DESC LIMIT 20',[idCuenta]);
         if(respuesta.rowCount >0){
             res.send(respuesta.rows)
+            console.log('Se obtuvo el historial');
         }else{
             res.status(500).send({error:'El album no tiene canciones'});
         }
@@ -17,5 +18,5 @@ const obtenerCancionesPorIdAlbum = async (req,res) =>{
 }
 
 module.exports ={
-    obtenerCancionesPorIdAlbum
+    obtenerHistorialReproduccion
 } 
