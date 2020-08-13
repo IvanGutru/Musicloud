@@ -40,7 +40,7 @@ Create table BibliotecaPropia(
     GeneroCancion text NOT NULL,
     AlbumCancion text NOT NULL,
     Portada text NOT NULL,
-    Duracion real NOT NULL,
+    Duracion text NOT NULL,
     Archivo text NOT NULL
 );
 

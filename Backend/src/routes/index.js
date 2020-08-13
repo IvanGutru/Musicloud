@@ -84,8 +84,11 @@ router.post('/Playlist',CrearPlaylist);
 const{ObtenerPlaylistDeSistema} = require('../Playlist/Aplicacion/obtnerPlaylistDeSistema');
 router.get('/Playlist/Sistema/:idPlaylistSistema',ObtenerPlaylistDeSistema);
 
-const{ObtenerPlaylistDeUsuario} = require('../Playlist/Aplicacion/obtenerPlaylistUsuario');
-router.get('/Playlist/Usuario/:idCuenta',ObtenerPlaylistDeUsuario);
+const{ObtenerPlaylistDeCuenta} = require('../Playlist/Aplicacion/obtenerPlaylistCuenta.js');
+router.get('/Playlist/Usuario/:idCuenta',ObtenerPlaylistDeCuenta);
+
+const{ObtenerPlaylistTipoUsuario} = require('../Playlist/Aplicacion/obtenerPlaylistTipoUsuario');
+router.get('/Playlist/TipoUsuario/:idCuenta',ObtenerPlaylistTipoUsuario);
 
 const{ObtenerImagenPlaylist} = require('../Playlist/Aplicacion/obtenerImagenPlaylist');
 router.get('/Playlist/imagen/:nombreImagen',ObtenerImagenPlaylist);
@@ -97,6 +100,12 @@ router.post('/Cancion/Historial/:idCancion/:idCuenta',añadirCancionAHistorial);
 const {obtenerHistorialReproduccion} = require('../Historial/Aplicacion/obtenerHistorialCancionesCuenta');
 router.get('/Historial/:idCuenta',obtenerHistorialReproduccion);
 
+//Rutas Playlist Canciones
+const {agregarCancionPlaylist} = require('../PlaylistCanciones/Aplicacion/agregarCancionPlaylist');
+router.post('/PlaylistCanciones/:idPlaylist/:idCancion',agregarCancionPlaylist);
+
+const {ObtenerPlaylistCancionesPorIdPlaylist} = require('../PlaylistCanciones/Aplicacion/obtenerPlaylistCancionesPorIdPlaylist');
+router.get('/PlaylistCanciones/:idPlaylist',ObtenerPlaylistCancionesPorIdPlaylist);
 //Rutas de géneros
 const{ObtenerGeneros} = require('../Genero/Aplicacion/obtenerGeneros');
 router.get('/Generos',ObtenerGeneros);

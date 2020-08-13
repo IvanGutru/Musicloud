@@ -7,7 +7,7 @@ const obtenerCancionesPorId = async (req,res) =>{
         const respuesta = await conexionBaseDatos.query('SELECT * FROM Cancion Where IdCancion = $1',[idCancion]);
         if(respuesta.rowCount >0){
             res.send(respuesta.rows[0])
-            console.log('Se obtuvo al menos una cancion');
+          
         }else{
             res.status(500).send({error:'No hay canciones registradas'});
         }

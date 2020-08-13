@@ -9,7 +9,7 @@ const obtenerHistorialReproduccion = async (req,res) =>{
             res.send(respuesta.rows)
             console.log('Se obtuvo el historial');
         }else{
-            res.status(500).send({error:'El album no tiene canciones'});
+            res.status(500).send({error:'Aún no tienes historial de reproducciones'});
         }
     } catch (error) {
         res.status(500).send(error);

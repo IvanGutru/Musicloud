@@ -1,13 +1,16 @@
 const conexionBaseDatos = require('../../Utilidades/conexionBaseDatos');
 
 
-const ObtenerPlaylistDeUsuario = async(req, res) =>{
+const ObtenerPlaylistTipoUsuario = async(req, res) =>{
     var idCuenta = req.params.idCuenta;
+    var idTipoPlaylist = 2;
+    var idTipoSistema = 1;
     try {
-        const respuesta = await conexionBaseDatos.query('SELECT * FROM Playlist WHERE idCuenta = $1',[idCuenta]);
+        const respuesta = await conexionBaseDatos.query('SELECT * FROM Playlist WHERE (idCuenta = $1) and (idTipoPlaylist = $2 OR idTipoPlaylist = $3)',
+        [idCuenta,idTipoPlaylist, idTipoSistema]);
         if(respuesta.rowCount>0){
             res.send(respuesta.rows)
-            console.log('Se han obtenido las playlist del usuario');
+            console.log('Se han obtenido las playlist de tipo usuario');
         }else{
             res.status(500).send({error:'El usuario aún no tiene playlist registradas'});
         }
@@ -19,5 +22,5 @@ const ObtenerPlaylistDeUsuario = async(req, res) =>{
 }
 
 module.exports ={
-    ObtenerPlaylistDeUsuario
+    ObtenerPlaylistTipoUsuario
 }
