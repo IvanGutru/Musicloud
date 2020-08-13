@@ -41,7 +41,9 @@ Create table BibliotecaPropia(
     AlbumCancion text NOT NULL,
     Portada text NOT NULL,
     Duracion text NOT NULL,
-    Archivo text NOT NULL
+    Archivo text NOT NULL, 
+    IdCuenta text,
+    IdPlaylist int,
 );
 CREATE TABLE BibliotecaPropiaPlaylist(
     IdBibliotecaPropiaPlaylist SERIAL PRIMARY KEY,
@@ -166,6 +168,16 @@ ALTER TABLE CuentaArtista
 ADD CONSTRAINT FKArtista
 FOREIGN KEY (IdArtista)
 REFERENCES Artista(IdArtista);
+
+ALTER TABLE BibliotecaPropia
+ADD CONSTRAINT FKCuenta
+FOREIGN KEY (IdCuenta)
+REFERENCES Cuenta(IdCuenta);
+
+ALTER TABLE BibliotecaPropia
+ADD CONSTRAINT FKPlaylist
+FOREIGN KEY (IdPlaylist)
+REFERENCES Playlist(IdPlaylist);
 
 ALTER TABLE BibliotecaPropiaPlaylist
 ADD CONSTRAINT FKBibliotecaPropia

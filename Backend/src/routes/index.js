@@ -110,8 +110,24 @@ router.get('/PlaylistCanciones/:idPlaylist',ObtenerPlaylistCancionesPorIdPlaylis
 const{ObtenerGeneros} = require('../Genero/Aplicacion/obtenerGeneros');
 router.get('/Generos',ObtenerGeneros);
 
+const{ObtenerGenerosPorId} = require('../Genero/Aplicacion/obtenerGenerosPorId');
+router.get('/Generos/ObtenerPorId/:idGenero',ObtenerGenerosPorId);
+
 const{ObtenerIdGenero} = require('../Genero/Aplicacion/obtenerIdGenero');
 router.get('/Generos/ObtenerId/:nombre',ObtenerIdGenero);
 
+const{obtenerAlbumPorGenero} = require('../Genero/Aplicacion/obtenerAlbumesPorGenero');
+router.get('/Generos/Album/:idGenero',obtenerAlbumPorGenero);
+
+//Rutas BibliotecaPropia
+
+const {CrearBibliotecaPropia} = require('../BibliotecaPropia/Aplicacion/crearBibliotecaPropia');
+router.post('/BibliotecaPropia',CrearBibliotecaPropia);
+
+const {ObtenerCancionesBibliotecaPropia} = require('../BibliotecaPropia/Aplicacion/obtenerCancionesBibliotecaPropia');
+router.get('/BibliotecaPropia/:idPlaylist/:idCuenta',ObtenerCancionesBibliotecaPropia);
+
+const{ObtenerImagenBibliotecaPropia} = require('../BibliotecaPropia/Aplicacion/obtenerImagenBibliotecaPropia');
+router.get('/BibliotecaPropia/:nombreImagen',ObtenerImagenBibliotecaPropia);
 
 module.exports = router;

@@ -5,8 +5,6 @@ const agregarCancionPlaylist = async (req,res) =>{
     try {
         var idCancion = req.params.idCancion;
         var idPlaylist = req.params.idPlaylist;
-        console.log(idCancion);
-        console.log(idPlaylist);
         if(await validarCancionNoRegistradaEnPlaylist(idCancion,idPlaylist)!=false){
             if(GuardarCancionEnPlaylist(idPlaylist,idCancion)){
                 res.send('Se añadió la canción a la playlist')
