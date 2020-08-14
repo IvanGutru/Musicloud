@@ -81,6 +81,15 @@ router.get('/Canciones/Id/:idCancion',obtenerCancionesPorId);
 const {CrearPlaylist} = require('../Playlist/Aplicacion/crearPlaylist');
 router.post('/Playlist',CrearPlaylist);
 
+const {AgregarCancionAmegusta} = require('../Playlist/Aplicacion/agregarCancionAMegusta');
+router.post('/Playlist/MeGusta/:idCancion/:idCuenta',AgregarCancionAmegusta);
+
+const {QuitarCancionDeMeGusta} = require('../Playlist/Aplicacion/quitarCancionDeMegusta');
+router.delete('/Playlist/MeGusta/:idCancion/:idCuenta',QuitarCancionDeMeGusta);
+
+const {ValidarCancionMeGusta} = require('../Playlist/Aplicacion/validarCancionEnMeGusta');
+router.get('/Playlist/MeGusta/:idCancion/:idCuenta',ValidarCancionMeGusta);
+
 const{ObtenerPlaylistDeSistema} = require('../Playlist/Aplicacion/obtnerPlaylistDeSistema');
 router.get('/Playlist/Sistema/:idPlaylistSistema',ObtenerPlaylistDeSistema);
 
