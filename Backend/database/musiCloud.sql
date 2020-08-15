@@ -96,6 +96,11 @@ CREATE TABLE PlaylistCanciones(
     IdPlaylist integer,
     IdCancion text
 );
+CREATE TABLE CancionDescargada(
+    IdCancionDescargada SERIAL PRIMARY KEY,
+    IdCancion text,
+    IdCuenta text
+);
 
 CREATE TABLE TokenUsuario(
     IdToken SERIAL PRIMARY KEY,
@@ -188,3 +193,13 @@ ALTER TABLE BibliotecaPropiaPlaylist
 ADD CONSTRAINT FKPlaylist
 FOREIGN KEY (IdPlaylist)
 REFERENCES Playlist(IdPlaylist);
+
+ALTER TABLE CancionDescargada
+ADD CONSTRAINT FKCuenta
+FOREIGN KEY (IdCuenta)
+REFERENCES Cuenta(IdCuenta);
+
+ALTER TABLE CancionDescargada
+ADD CONSTRAINT FKCancion
+FOREIGN KEY (IdCancion)
+REFERENCES Cancion(IdCancion);

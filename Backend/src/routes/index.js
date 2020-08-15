@@ -90,6 +90,12 @@ router.delete('/Playlist/MeGusta/:idCancion/:idCuenta',QuitarCancionDeMeGusta);
 const {ValidarCancionMeGusta} = require('../Playlist/Aplicacion/validarCancionEnMeGusta');
 router.get('/Playlist/MeGusta/:idCancion/:idCuenta',ValidarCancionMeGusta);
 
+const {AgregarCancionADescargas} = require('../Playlist/Aplicacion/agregarCancionADescargas');
+router.post('/Playlist/Descargas/:idCancion/:idCuenta',AgregarCancionADescargas);
+
+const {ValidarCancionEnDescargas} = require('../Playlist/Aplicacion/validarCancionEnDescargas');
+router.get('/Playlist/Descargas/:idCancion/:idCuenta',ValidarCancionEnDescargas);
+
 const{ObtenerPlaylistDeSistema} = require('../Playlist/Aplicacion/obtnerPlaylistDeSistema');
 router.get('/Playlist/Sistema/:idPlaylistSistema',ObtenerPlaylistDeSistema);
 
@@ -138,5 +144,6 @@ router.get('/BibliotecaPropia/:idPlaylist/:idCuenta',ObtenerCancionesBibliotecaP
 
 const{ObtenerImagenBibliotecaPropia} = require('../BibliotecaPropia/Aplicacion/obtenerImagenBibliotecaPropia');
 router.get('/BibliotecaPropia/:nombreImagen',ObtenerImagenBibliotecaPropia);
+
 
 module.exports = router;
