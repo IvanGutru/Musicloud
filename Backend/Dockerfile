@@ -1,13 +1,13 @@
-FROM ubuntu:20.04
-RUN apt-get update
-RUN apt-get install -y nodejs \
-    npm 
-COPY ./Imagenes ./Imagenes
-COPY ./node_modules ./node_modules
-COPY ./src ./src
-COPY ./package.json ./package.json
-COPY ./package-lock.json ./package-lock.json
+FROM node:12
 
-WORKDIR /src
-CMD npm run dev
+#Crar directorio
+COPY ./src /backend/src/
+WORKDIR /backend/src
+COPY package*.json /backend/
+
+RUN npm install
+
+COPY ./Imagenes /backend/Imagenes/
 EXPOSE 5000
+RUN ls
+CMD [ "node", "index.js" ]

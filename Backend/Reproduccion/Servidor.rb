@@ -7,7 +7,7 @@ require 'servicio_reproduccion'
 class Reproductor
     def ObtenerCancion(nombreArchivo)
         audio = ''
-        File.open "../Canciones/#{nombreArchivo}.mp3", "r" do |source_file|
+        File.open "../Reproduccion/Canciones/#{nombreArchivo}.mp3", "r" do |source_file|
             until source_file.eof?
                 chunk = source_file.read 100000 
                 audio += chunk
@@ -19,7 +19,7 @@ class Reproductor
 
     def SubirAudio(audioCancion)
         begin
-            File.open "../Canciones/#{audioCancion.nombreCancion}.mp3", "wb" do |destin_file|
+            File.open "../Reproduccion/Canciones/#{audioCancion.nombreCancion}.mp3", "wb" do |destin_file|
                 destin_file.write audioCancion.audio
             end
             return true
