@@ -34,8 +34,8 @@ async function GuardarReproduccion(idCuenta,idCancion,fechaReproduccion){
                 return false;
             }
 }
-async function validarCancionNoRegistradaEnHistorial(idCancion){
-    const respuesta = await conexionBaseDatos.query('SELECT * FROM Historial where idCancion = $1;',[idCancion]);
+async function validarCancionNoRegistradaEnHistorial(idCancion, idCuenta){
+    const respuesta = await conexionBaseDatos.query('SELECT * FROM Historial where (idCancion = $1) AND (IdCuenta = $2);',[idCancion,idCuenta]);
     if(respuesta.rowCount>0){
         console.log('Ya está registrada');
         return false;
