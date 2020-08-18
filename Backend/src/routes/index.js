@@ -81,6 +81,12 @@ router.get('/Canciones/Id/:idCancion',obtenerCancionesPorId);
 const {CrearPlaylist} = require('../Playlist/Aplicacion/crearPlaylist');
 router.post('/Playlist',CrearPlaylist);
 
+const {EliminarPlaylistPorId} = require('../Playlist/Aplicacion/eliminarPlaylistPorId');
+router.delete('/Playlist/Eliminar/:idPlaylist',EliminarPlaylistPorId);
+
+const {EliminarCancionDePlaylist} = require('../Playlist/Aplicacion/eliminarCancionDePlaylist');
+router.delete('/Playlist/Eliminar/:idPlaylist/:idCancion',EliminarCancionDePlaylist);
+
 const {AgregarCancionAmegusta} = require('../Playlist/Aplicacion/agregarCancionAMegusta');
 router.post('/Playlist/MeGusta/:idCancion/:idCuenta',AgregarCancionAmegusta);
 
@@ -104,6 +110,12 @@ router.get('/Playlist/Usuario/:idCuenta',ObtenerPlaylistDeCuenta);
 
 const{ObtenerPlaylistTipoUsuario} = require('../Playlist/Aplicacion/obtenerPlaylistTipoUsuario');
 router.get('/Playlist/TipoUsuario/:idCuenta',ObtenerPlaylistTipoUsuario);
+
+const{ObtenerPlaylistPorNombre} = require('../Playlist/Aplicacion/obtenerPlaylistPorNombre');
+router.get('/Playlist/Publicas/:nombre',ObtenerPlaylistPorNombre);
+
+const{ObtenerPlaylistInicio} = require('../Playlist/Aplicacion/obtenerPlaylistInicio');
+router.get('/Playlist/Inicio',ObtenerPlaylistInicio);
 
 const{ObtenerImagenPlaylist} = require('../Playlist/Aplicacion/obtenerImagenPlaylist');
 router.get('/Playlist/imagen/:nombreImagen',ObtenerImagenPlaylist);
