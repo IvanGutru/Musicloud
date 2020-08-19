@@ -27,10 +27,10 @@ const crearCuenta = async(req, res) =>{
                 }
 
             }else{
-                res.status(500).json({error:'El nombre de usuario ingresado ya está registrado'});
+                res.status(502).json({error:'El nombre de usuario ingresado ya está registrado'});
             }
         }else{
-            res.status(500).json({error: 'El correo ingresado ya está registrado'});
+            res.status(501).json({error: 'El correo ingresado ya está registrado'});
         }
     } catch (error) {
         console.log(error);

@@ -24,20 +24,16 @@ async function GuardarCancionEnPlaylist(idPlaylist,idCancion){
     const respuesta = await conexionBaseDatos.query('INSERT INTO PlaylistCanciones (idPlaylist,idCancion) VALUES($1,$2)',
             [idPlaylist,idCancion]);
             if(respuesta.rowCount >0){
-                console.log('Cancion añadida a Playlist');
                 return true;
             }else{
-                console.log('No se pudo guardar la canción en playlist');
                 return false;
             }
 }
 async function validarCancionNoRegistradaEnPlaylist(idCancion,idPlaylist){
     const respuesta = await conexionBaseDatos.query('SELECT * FROM PlaylistCanciones where idCancion = $1 and idPlaylist = $2;',[idCancion,idPlaylist]);
     if(respuesta.rowCount>0){
-        console.log('Ya está registrada');
         return false;
     }else{
-        console.log('No está registrada');
         return true;
     }
 

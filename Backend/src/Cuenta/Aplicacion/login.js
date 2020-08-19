@@ -14,7 +14,6 @@ const login = async (req, res) =>{
                 var token = await guardarToken(cuenta.correo);
                 if(token != null){
                     res.send(cuentaBD)
-                    console.log('Inició sesión');
                 }else{
                     res.send({Mensaje:'Error en la base de datos'})
                 }
@@ -22,7 +21,7 @@ const login = async (req, res) =>{
                 res.status(501).send({error:'Las contraseña es incorrecta'});
             }
         }else{
-            res.status(501).send({error: 'El correo ingresado y/o el nombre de usuario no está registrado'});
+            res.status(502).send({error: 'El correo ingresado y/o el nombre de usuario no está registrado'});
         }
     } catch (error) {
         console.log(error)

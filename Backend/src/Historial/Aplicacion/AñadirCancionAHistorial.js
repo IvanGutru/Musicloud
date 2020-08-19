@@ -13,7 +13,7 @@ const añadirCancionAHistorial = async (req,res) =>{
                 res.status(500).send({error:'Error al guardar Historial'});
             }
         }else if(await ActualizarHistorial(idCuenta,idCancion,fechaReproduccion)){
-                res.send('Se actualizó el historial');
+                res.status(201).send('Se actualizó el historial');
         }else{
             res.status(500).send({error:'Error al actualizar Historial'});
         }
@@ -27,7 +27,6 @@ async function GuardarReproduccion(idCuenta,idCancion,fechaReproduccion){
     const respuesta = await conexionBaseDatos.query('INSERT INTO Historial (fechaReproduccion,idCuenta,idCancion) VALUES($1,$2,$3)',
             [fechaReproduccion,idCuenta,idCancion]);
             if(respuesta.rowCount >0){
-                console.log('Cancion añadida al historial');
                 return true;
             }else{
                 console.log('No se pudo guardar el historial');
@@ -37,10 +36,8 @@ async function GuardarReproduccion(idCuenta,idCancion,fechaReproduccion){
 async function validarCancionNoRegistradaEnHistorial(idCancion, idCuenta){
     const respuesta = await conexionBaseDatos.query('SELECT * FROM Historial where (idCancion = $1) AND (IdCuenta = $2);',[idCancion,idCuenta]);
     if(respuesta.rowCount>0){
-        console.log('Ya está registrada');
         return false;
     }else{
-        console.log('No está registrada');
         return true;
     }
 

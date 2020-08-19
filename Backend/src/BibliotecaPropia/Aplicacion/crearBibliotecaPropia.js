@@ -7,6 +7,7 @@ const CrearBibliotecaPropia = async (req, res)=>{
         const cancionBiblioteca ={nombreCancion: req.body.nombreCancion, generoCancion: req.body.generoCancion,albumCancion: req.body.albumCancion,
             portada: req.body.portada, duracion: req.body.duracion, archivo: req.body.archivo, fechaRegistro: req.body.fechaRegistro,idCuenta: req.body.idCuenta, idPlaylist:req.body.idPlaylist};
             cancionBiblioteca.portada = ObtenerValorPortada(cancionBiblioteca.portada, cancionBiblioteca.nombreCancion,cancionBiblioteca.fechaRegistro);
+            console.log('Aqui andamos');
             if(await ValidarNumeroDeCanciones(cancionBiblioteca.idCuenta)){
                 if(await GuardarCancionBiblioteca(cancionBiblioteca)){
                     var cancionBibliotecaRegistrada = await ObtenercancionBibliotecaRegistrada(cancionBiblioteca.idCuenta);

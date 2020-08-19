@@ -7,7 +7,6 @@ const ObtenerPlaylistCancionesPorIdPlaylist = async(req, res) =>{
         const respuesta = await conexionBaseDatos.query('SELECT * FROM PlaylistCanciones WHERE idplaylist = $1',[idPlaylist]);
         if(respuesta.rowCount>0){
             res.send(respuesta.rows)
-            console.log('Se han obtenido la playlistCanciones ');
         }else{
             res.status(500).send({error:'La playlist no tiene canciones agregadas'});
         }

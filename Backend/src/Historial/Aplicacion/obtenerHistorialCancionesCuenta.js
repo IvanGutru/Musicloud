@@ -7,7 +7,6 @@ const obtenerHistorialReproduccion = async (req,res) =>{
         const respuesta = await conexionBaseDatos.query('SELECT * FROM Historial  Where IdCuenta = $1 ORDER BY fechaReproduccion DESC LIMIT 20',[idCuenta]);
         if(respuesta.rowCount >0){
             res.send(respuesta.rows)
-            console.log('Se obtuvo el historial');
         }else{
             res.status(500).send({error:'Aún no tienes historial de reproducciones'});
         }

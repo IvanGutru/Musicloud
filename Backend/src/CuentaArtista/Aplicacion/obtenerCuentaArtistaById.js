@@ -7,7 +7,7 @@ const ObtenerCuentaArtista = async(req, res) =>{
         if(respuesta.rowCount>0){
             res.send(respuesta.rows[0])
         }else{
-            res.send({error:'No se encontraron CuentaArtistas registradas'});
+            res.status(500).send({error:'No se encontraron CuentaArtistas registradas'});
         }
     } catch (error) {
         res.send({error:error});

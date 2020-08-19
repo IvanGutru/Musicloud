@@ -3,7 +3,6 @@ var pool = require('../Utilidades/conexionBaseDatos');
 const getCuentaPorId = async (req, res) =>{
     try{
         const respuesta = await pool.query('SELECT * FROM cuenta;');
-        console.log(respuesta.rows);
         res.send(respuesta.rows);
     }catch(err){
         console.log(err);
@@ -12,7 +11,6 @@ const getCuentaPorId = async (req, res) =>{
 const getTokens = async (req, res) =>{
     try{
         const respuesta = await pool.query('SELECT * FROM TokenUsuario;');
-        console.log(respuesta.rows);
         res.send(respuesta.rows);
     }catch(err){
         console.log(err);

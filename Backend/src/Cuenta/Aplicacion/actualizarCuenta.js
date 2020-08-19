@@ -10,7 +10,7 @@ const ActualizarCuenta = async(req, res) =>{
         if(respuesta.rowCount>0){
             res.send({Mensaje: 'Se han modficado con éxito los datos'});
         }else{
-                res.send({error:'No hubo modificaciones en la base de datos'});
+            res.status(201).send({error:'No hubo modificaciones en la base de datos'});
         }
       
     } catch (error) {
