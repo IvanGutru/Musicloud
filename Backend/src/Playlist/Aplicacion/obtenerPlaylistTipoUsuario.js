@@ -10,7 +10,6 @@ const ObtenerPlaylistTipoUsuario = async(req, res) =>{
         [idCuenta,idTipoPlaylist, idTipoSistema]);
         if(respuesta.rowCount>0){
             res.send(respuesta.rows)
-            console.log('Se han obtenido las playlist de tipo usuario');
         }else{
             res.status(500).send({error:'El usuario aún no tiene playlist registradas'});
         }

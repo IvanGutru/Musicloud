@@ -14,7 +14,6 @@ const CrearArtista = async (req, res)=>{
             [artista.idArtista,artista.nombre,artista.descripcion,artista.portada,artista.fechaRegistro,artista.idGenero]);
             if(respuesta.rowCount>0){
                 var artistaRegistrado = await ObtenerCuentaArtista(artista.idArtista);
-                console.log(artistaRegistrado);
                 if(artistaRegistrado!=null){
                     res.send(artistaRegistrado);
                 }else{
@@ -24,7 +23,7 @@ const CrearArtista = async (req, res)=>{
                 res.status(500).send({error: 'Ocurrió un error al guardar al artista'});
             }
         }else{
-            res.status(500).send({error:'El nombre del artista ingresado ya está registrado'});
+            res.status(501).send({error:'El nombre del artista ingresado ya está registrado'});
         }
     } catch (error) {
         res.status(500).send({error:'Error en base de datos'});

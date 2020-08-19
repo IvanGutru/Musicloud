@@ -8,6 +8,9 @@ router.get('/Cuenta', getCuentaPorId);
 const { crearCuenta } = require('../Cuenta/Aplicacion/crearCuenta');
 router.post('/Cuenta',crearCuenta);
 
+const { EliminarCuenta } = require('../Cuenta/Aplicacion/eliminarCuentaPorCorreo');
+router.delete('/Cuenta/:correo',EliminarCuenta);
+
 const { ConvertirseEnCreadorDeContenido } = require('../Cuenta/Aplicacion/convertirseEnCreadorDeContenido');
 router.put('/Cuenta/CreadorContenido/:idCuenta',ConvertirseEnCreadorDeContenido);
 
@@ -27,12 +30,14 @@ router.get('/Artista/:nombre',obtenerArtistaPorNombre);
 const { obtenerArtistaPorId } = require('../Artista/Aplicacion/obtenerArtistaPorId');
 router.get('/Artista/Id/:idArtista',obtenerArtistaPorId);
 
-
 const { ObtenerArtistasHome } = require('../Artista/Aplicacion/obtenerArtistasHome');
 router.get('/ArtistaHome',ObtenerArtistasHome);
 
 const {CrearArtista} = require('../Artista/Aplicacion/crearArtista');
 router.post('/Artista',CrearArtista);
+
+const {EliminarArtista} = require('../Artista/Aplicacion/eliminarArtistaPorNombre');
+router.delete('/Artista/:nombre',EliminarArtista);
 
 const{ObtenerImagenArtista} = require('../Artista/Aplicacion/obtenerImagenArtista');
 router.get('/Artista/imagen/:nombreImagen',ObtenerImagenArtista);
@@ -61,6 +66,9 @@ router.get('/Album/Nombre/:nombreAlbum',obtenerAlbumPorNombre);
 const{CrearAlbum} = require('../Album/Aplicacion/crearAlbum');
 router.post('/Album',CrearAlbum);
 
+const{EliminarAlbumPorNombreID} = require('../Album/Aplicacion/eliiminarAlbumPorNombreId');
+router.delete('/Album/:nombre/:idArtista',EliminarAlbumPorNombreID);
+
 const { ObtenerAlbumesHome } = require('../Album/Aplicacion/obtenerAlbumesHome');
 router.get('/AlbumHome',ObtenerAlbumesHome);
 
@@ -81,6 +89,9 @@ router.get('/Canciones/Id/:idCancion',obtenerCancionesPorId);
 const {CrearPlaylist} = require('../Playlist/Aplicacion/crearPlaylist');
 router.post('/Playlist',CrearPlaylist);
 
+const {EliminarPlaylistPorNombre} = require('../Playlist/Aplicacion/eliminarPlaylistPorNombre');
+router.delete('/Playlist/EliminarNombre/:nombre',EliminarPlaylistPorNombre);
+
 const {EliminarPlaylistPorId} = require('../Playlist/Aplicacion/eliminarPlaylistPorId');
 router.delete('/Playlist/Eliminar/:idPlaylist',EliminarPlaylistPorId);
 
@@ -98,6 +109,9 @@ router.get('/Playlist/MeGusta/:idCancion/:idCuenta',ValidarCancionMeGusta);
 
 const {AgregarCancionADescargas} = require('../Playlist/Aplicacion/agregarCancionADescargas');
 router.post('/Playlist/Descargas/:idCancion/:idCuenta',AgregarCancionADescargas);
+
+const {QuitarCancionDescargas} = require('../Playlist/Aplicacion/quitarCancionDescargas');
+router.delete('/Playlist/Descargas/:idCancion/:idCuenta', QuitarCancionDescargas);
 
 const {ValidarCancionEnDescargas} = require('../Playlist/Aplicacion/validarCancionEnDescargas');
 router.get('/Playlist/Descargas/:idCancion/:idCuenta',ValidarCancionEnDescargas);

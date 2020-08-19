@@ -14,7 +14,7 @@ const AgregarCancionAmegusta = async(req,res) =>{
                     res.status(500).send('No se pudo guardar la canción');
                 }
             }else{
-                res.status(500).send({error: 'La canción seleccionada ya ha sido agregada'});
+                res.status(501).send({error: 'La canción seleccionada ya ha sido agregada'});
             }
 
         }else{

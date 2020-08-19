@@ -7,7 +7,6 @@ const ObtenerPlaylistPorNombre = async(req, res) =>{
         const respuesta = await conexionBaseDatos.query('SELECT * FROM Playlist WHERE nombre ILIKE $1 and publica = true;',['%'+nombre+'%']);
         if(respuesta.rowCount>0){
             res.send(respuesta.rows)
-            console.log('Se han obtenido las playlist');
         }else{
             res.status(500).send({error:'No existen playlist con ese nombre'});
         }

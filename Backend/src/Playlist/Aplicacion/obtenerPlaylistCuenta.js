@@ -7,7 +7,6 @@ const ObtenerPlaylistDeCuenta = async(req, res) =>{
         const respuesta = await conexionBaseDatos.query('SELECT * FROM Playlist WHERE idCuenta = $1',[idCuenta]);
         if(respuesta.rowCount>0){
             res.send(respuesta.rows)
-            console.log('Se han obtenido las playlist del usuario');
         }else{
             res.status(500).send({error:'El usuario aún no tiene playlist registradas'});
         }

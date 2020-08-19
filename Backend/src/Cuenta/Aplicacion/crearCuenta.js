@@ -15,7 +15,6 @@ const crearCuenta = async(req, res) =>{
                 const respuesta = await conexionBaseDatos.query('INSERT INTO cuenta (IdCuenta, Correo, Contraseña, Apellidos, NombreUsuario, Nombre,CreadorContenido) VALUES ($1,$2,$3,$4,$5,$6,$7);',
                 [cuenta.idCuenta,cuenta.correo,cuenta.contraseña,cuenta.apellidos,cuenta.nombreUsuario,cuenta.nombre,cuenta.creadorContenido]);
                 if(respuesta.rowCount>0){
-                    console.log(cuenta.idCuenta);
                     if(await CrearPlaylistDeIncio(cuenta.idCuenta)){
                         res.status(200).json({Mensaje: 'Registro exitoso'});
                         console.log('Registro exitoso')
@@ -67,12 +66,9 @@ async function CrearPlaylistMeGusta(idCuenta){
     var tipoPlaylistMegusta = 3;
     const respuesta = await conexionBaseDatos.query('INSERT INTO Playlist (nombre, publica, fechaCreacion, portada, idCuenta, idTipoPlaylist) Values'+
     '($1,$2,$3,$4,$5,$6);',[nombrePlaylist,false,current_date,portadaMegusta,idCuenta,tipoPlaylistMegusta]);
-    console.log(respuesta.rowCount);
     if(respuesta.rowCount>0){
-        console.log('Se ha creado la playlist de tipo Me gusta');
         return true;
     }else{
-        console.log('No se ha podido crear la playlist tipo Me gusta');
         return false;
     }
 }
@@ -84,12 +80,9 @@ async function CrearPlaylistBibliotecaPropia(idCuenta){
     var tipoPlaylistBiblioteca = 5;
     const respuesta = await conexionBaseDatos.query('INSERT INTO Playlist (nombre, publica, fechaCreacion, portada, idCuenta, idTipoPlaylist) Values'+
     '($1,$2,$3,$4,$5,$6);',[nombrePlaylist,false,current_date,portadaBiblioteca,idCuenta,tipoPlaylistBiblioteca]);
-    console.log(respuesta.rowCount);
     if(respuesta.rowCount>0){
-        console.log('Se ha creado la playlist de tipo Biblioteca');
         return true;
     }else{
-        console.log('No se ha podido crear la playlist tipo Biblioteca');
         return false;
     }
 }
@@ -102,12 +95,9 @@ async function CrearPlaylistDescargas(idCuenta){
     var tipoPlaylistMusicaDescargada = 4;
     const respuesta = await conexionBaseDatos.query('INSERT INTO Playlist (nombre, publica, fechaCreacion, portada, idCuenta, idTipoPlaylist) Values'+
     '($1,$2,$3,$4,$5,$6);',[nombrePlaylist,false,current_date,portadaDescargas,idCuenta,tipoPlaylistMusicaDescargada]);
-    console.log(respuesta.rowCount);
     if(respuesta.rowCount>0){
-        console.log('Se ha creado la playlist de tipo Musica Descargada');
         return true;
     }else{
-        console.log('No se ha podido crear la playlist tipo Musica Descargada');
         return false;
     }
 }
