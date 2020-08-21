@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 const {expect} = chai;
 
 describe('Endpoints de Album:', () => {
-    it("Manejar GET request /Album/Id/:idAlbum", (done) => {
+    it("Obtener álbum por id /Album/Id/:idAlbum", (done) => {
         const idAlbum = '36b3e197d88c1fb956b54392387fc0294fd3d216';
         chai.request(app)
         .get(`/Album/Id/${idAlbum}`)
@@ -20,7 +20,7 @@ describe('Endpoints de Album:', () => {
         });
     });
 
-    it("Manejar GET request /AlbumHome", (done) =>{
+    it("Obtener álbumes para página de inicio /AlbumHome", (done) =>{
         chai.request(app)
         .get("/AlbumHome")
         .set('Accept', 'aplication/json')
@@ -30,7 +30,7 @@ describe('Endpoints de Album:', () => {
         });
     });
 
-    it("Manejar GET request /Album/:idArtista", (done) => {
+    it("Obtener álbumes por IdArtista /Album/:idArtista", (done) => {
         const idArtista = '3cc0e0448bc2aea780ae259785b4d84de01d4637';
         chai.request(app)
         .get(`/Album/${idArtista}`)
@@ -41,7 +41,7 @@ describe('Endpoints de Album:', () => {
         });
     });
 
-    it("Manejar GET request /Album/Nombre/:nombreAlbum", (done) => {
+    it("Obtener álbum por nombre /Album/Nombre/:nombreAlbum", (done) => {
         const nombreAlbum = 'STARBOY';
         chai.request(app)
         .get(`/Album/Nombre/${nombreAlbum}`)
@@ -143,7 +143,7 @@ describe('Endpoints Artista', () =>{
         });
     });
 
-    it("Manejar GET request /Artista/:nombreArtista", (done) => {
+    it("Obtener artista por nombre /Artista/:nombreArtista", (done) => {
         const nombreArtista = 'The';
         chai.request(app)
         .get(`/Artista/${nombreArtista}`)
